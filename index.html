@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>경북고 지도</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .search-results div {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .search-results .name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .search-results .description {
+            color: #666;
+        }
+
+        /* 제품 이미지의 크기를 조절하기 위한 스타일 */
+        .product-image {
+            width: 215px; /* 이미지의 너비를 150px로 설정 */
+            height: auto; /* 이미지의 높이를 원본 비율에 맞게 자동으로 조절 */
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="search" placeholder="물건 검색..." />
+    <button onclick="search()">검색</button>
+    <div id="results"></div>
+
+    <script>
+        var products = [
+            { name: '시청각실', description: '남관 1층', imageUrl: 'https://drive.google.com/uc?id=1bL35LdmXvvvHQf4KyDvpzamTThzocAau' },
+            { name: '컴퓨터실', description: '공학관 1층', imageUrl: 'https://drive.google.com/uc?id=1c5QLFSc727IfnocernbQQY2sjU46m7Jl' },
+            { name: '보건실', description: '본관 1층', imageUrl: 'https://drive.google.com/uc?id=1brlQ2vjXDEze9NavlrxypuQ3OdNF-xpC' },
+            { name: '본교무실', description: '본관 3층', imageUrl: 'https://drive.google.com/uc?id=1c9GZ3SolE8-xV8OzFvO4VRXG_DTHU_tx' },
+            { name: '보건실', description: '본관 3층', imageUrl: 'https://drive.google.com/uc?id=1cAfMV5sYNYsQNg4K-qr7VwAdFzJgU3qW' },
+            { name: '3학년 교무실', description: '북관 2층', imageUrl: 'https://drive.google.com/uc?id=1bhNvtn1nm74qhQiuhDwNMBfi7xUPACsC' },
+            { name: '도서열람실', description: '도서관 1층', imageUrl: 'https://drive.google.com/uc?id=1bc5MwunVI_sNb-BuOpHMhGhkTdQXkyoy' },
+        ];
+
+        function search() {
+            var query = document.getElementById('search').value.toLowerCase();
+            var resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            for (var i = 0; i < products.length; i++) {
+                if (products[i].name.toLowerCase().includes(query)) {
+                    var resultDiv = document.createElement('div');
+                    var nameDiv = document.createElement('div');
+                    var descriptionDiv = document.createElement('div');
+                    var imageElement = document.createElement('img');
+
+                    nameDiv.textContent = products[i].name;
+                    descriptionDiv.textContent = products[i].description;
+                    imageElement.src = products[i].imageUrl;
+                    imageElement.className = 'product-image';  // 제품 이미지 크기를 조절하는 클래스 추가
+
+                    nameDiv.className = 'name';
+                    descriptionDiv.className = 'description';
+
+                    resultDiv.appendChild(nameDiv);
+                    resultDiv.appendChild(descriptionDiv);
+                    resultDiv.appendChild(imageElement);
+
+                    resultsDiv.appendChild(resultDiv);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
